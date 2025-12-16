@@ -30,6 +30,11 @@ public class AuthService {
         if (userOpt.isPresent()) {
             Usuario user = userOpt.get();
 
+            //SOLUCION 5. Tener en cuenta mayúsculas/minúsculas (que el usuario sea exactamente el mismo)
+            if(!user.getNombre_usuario().equals(nombreUsuario)) {
+                return Optional.empty();
+            }
+
             if (user.getContraseña().equals(password)) {
                 return Optional.of(user);
             } else {

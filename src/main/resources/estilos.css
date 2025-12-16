@@ -1,0 +1,105 @@
+/* --- ESTILO RETRO VIDEOCLUB (BLOCKBUSTER VIBE) --- */
+
+/* 1. Fondo General y Tipografía */
+.root {
+    /* Un azul oscuro, como las cajas de las cintas VHS o la moqueta del videoclub */
+    -fx-background-color: #0c2461;
+    /* Tipografía monoespaciada tipo 'Ticket de compra' o 'Terminal antigua' */
+    -fx-font-family: 'Courier New', 'Monospaced';
+    -fx-font-size: 14px;
+}
+
+/* 2. Etiquetas (Labels) */
+.label {
+    -fx-text-fill: #f1f2f6; /* Blanco hueso para leer bien sobre azul */
+    -fx-font-weight: bold;
+}
+
+/* Títulos grandes (los que pusimos en el Top) */
+.header-label {
+    -fx-text-fill: #f6b93b; /* Amarillo brillante */
+    -fx-font-size: 24px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 5, 0, 0, 1);
+}
+
+/* 3. Botones (Estilo 'Tecla de plástico') */
+.button {
+    -fx-background-color: #f6b93b; /* Amarillo Iconico */
+    -fx-text-fill: #0c2461; /* Texto azul oscuro */
+    -fx-font-weight: bold;
+    -fx-background-radius: 0; /* Bordes cuadrados, nada de redondeces modernas */
+    -fx-border-color: #e58e26; /* Borde naranja/oscuro para dar relieve 3D */
+    -fx-border-width: 2px;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #e58e26; /* Se oscurece al pasar el ratón */
+    -fx-effect: glow(0.3);
+}
+
+.button:pressed {
+    -fx-background-color: #b71540; /* Rojo al pulsar */
+    -fx-text-fill: white;
+}
+
+/* 4. Tablas (TableView) - Estilo lista de inventario */
+.table-view {
+    -fx-base: #1e3799; /* Fondo base azul un poco más claro */
+    -fx-control-inner-background: #dff9fb; /* Fondo de las filas (papel térmico azulado) */
+    -fx-background-color: #0c2461;
+    -fx-table-cell-border-color: transparent;
+    -fx-padding: 5;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #0c2461; /* Cabecera oscura */
+    -fx-border-color: #f6b93b;
+    -fx-border-width: 0 0 2px 0; /* Línea amarilla debajo de la cabecera */
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: #f6b93b; /* Texto de cabecera amarillo */
+    -fx-font-size: 13px;
+    -fx-alignment: CENTER-LEFT;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #c7ecee; /* Alternancia de colores para leer mejor */
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #b71540; /* Rojo intenso al seleccionar una fila */
+    -fx-text-fill: white;
+}
+
+/* 5. Campos de Texto (TextField) */
+.text-field, .text-area, .combo-box {
+    -fx-background-color: #f1f2f6;
+    -fx-background-radius: 0; /* Cuadrados */
+    -fx-border-color: #4a69bd;
+    -fx-border-width: 1px;
+    -fx-prompt-text-fill: #7f8fa6;
+    -fx-font-family: 'Courier New';
+}
+
+.text-field:focused, .text-area:focused {
+    -fx-border-color: #f6b93b; /* Borde amarillo al escribir */
+    -fx-background-color: #ffffff;
+}
+/* 6. Imagen Decorativa (Logo) */
+.logo-icon {
+    /* Rotamos la imagen 10 grados para darle un toque desenfadado */
+    -fx-rotate: -10;
+
+    /* Le añadimos una sombra negra para que parezca que flota sobre el fondo azul */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 5, 5);
+}
+
+/* Efecto extra: Al pasar el ratón por encima, se pone recta */
+.logo-icon:hover {
+    -fx-rotate: 0;
+    -fx-scale-x: 1.1; /* Se hace un poquito más grande */
+    -fx-scale-y: 1.1;
+    -fx-transition: all 0.3s; /* Animación suave */
+}

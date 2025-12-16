@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" spacing="15.0" stylesheets="@../../../estilos.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.hibernate.controllers.AddCopiaController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+
+    <Label fx:id="lblTitulo" text="Añadir Nueva Copia">
+        <font>
+            <Font size="18.0" />
+        </font>
+    </Label>
+
+    <VBox alignment="CENTER_LEFT" spacing="5.0">
+        <Label text="Selecciona Película:" />
+        <ComboBox fx:id="comboPeliculas" prefWidth="250.0" promptText="Elige una película..." />
+    </VBox>
+
+    <TextField fx:id="txtEstado" promptText="Estado (ej: Bueno, Rayado)" />
+    <TextField fx:id="txtSoporte" promptText="Soporte (ej: DVD, Blu-Ray)" />
+
+    <HBox alignment="CENTER" spacing="20.0">
+        <Button defaultButton="true" onAction="#onGuardarClick" text="Guardar" />
+        <Button cancelButton="true" onAction="#onCancelarClick" text="Cancelar" />
+    </HBox>
+</VBox>

@@ -25,35 +25,44 @@ public class AddPeliculaController {
 
     @FXML
     public void onGuardarClick() {
-
-        if (txtTitulo.getText().isEmpty() || txtDirector.getText().isEmpty() ||
-                txtAnio.getText().isEmpty() || txtGenero.getText().isEmpty()) {
-            mostrarAlerta("Error", "Por favor, rellena todos los campos obligatorios.");
+        //SOLUCIÓN PROBLEMA #1
+        //Validación de campos vacíos o espacios en blanco
+        if (txtTitulo.getText().trim().isEmpty() || txtDirector.getText().trim().isEmpty() ||
+                txtAnio.getText().trim().isEmpty() || txtGenero.getText().trim().isEmpty()) {
+            mostrarAlerta("Error de Validación", "Por favor, rellena todos los campos. No se permiten solo espacios.");
             return;
         }
 
         try {
-            // Creo el objeto Película
+            int anio = Integer.parseInt(txtAnio.getText().trim());
+            int anioActual = java.time.Year.now().getValue();
+
+            //Validación del año
+            if (anio < 1895 || anio > (anioActual + 1)) {
+                mostrarAlerta("Error de Formato", "El año debe ser válido (entre 1895 y " + (anioActual + 1) + ").");
+                return;
+            }
+
+            //Crear y guardar
             Pelicula pelicula = new Pelicula();
-            pelicula.setTitulo(txtTitulo.getText());
-            pelicula.setDirector(txtDirector.getText());
-            pelicula.setGenero(txtGenero.getText());
-            pelicula.setDescripcion(txtDescripcion.getText());
-
-
-            int anio = Integer.parseInt(txtAnio.getText());
+            pelicula.setTitulo(txtTitulo.getText().trim());
+            pelicula.setDirector(txtDirector.getText().trim());
+            pelicula.setGenero(txtGenero.getText().trim());
+            pelicula.setDescripcion(txtDescripcion.getText().trim());
             pelicula.setAño(anio);
 
-            //Guardo en la base de datos general
             pelicularep.save(pelicula);
+
+            // SOLUCIÓN PROBLEMA #2
+            mostrarInformacion("Operación Exitosa", "La película '" + pelicula.getTitulo() + "' ha sido añadida correctamente.");
 
             cerrarVentana();
 
         } catch (NumberFormatException e) {
-            mostrarAlerta("Error de Formato", "El año debe ser un número válido.");
+            mostrarAlerta("Error de Formato", "El año debe ser un número entero válido.");
         } catch (Exception e) {
             e.printStackTrace();
-            mostrarAlerta("Error", "No se pudo guardar la película.");
+            mostrarAlerta("Error Crítico", "No se pudo guardar la película en la base de datos.");
         }
     }
 
@@ -74,4 +83,13 @@ public class AddPeliculaController {
         alert.setContentText(mensaje);
         alert.showAndWait();
     }
+
+    private void mostrarInformacion(String titulo, String mensaje) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
+    }
+
 }

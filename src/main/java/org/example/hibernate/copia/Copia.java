@@ -34,4 +34,10 @@ public class Copia {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private Pelicula pelicula;
+
+    @Column(name = "deleted", nullable = false)
+    private boolean deleted = false;
+
+    public boolean isDeleted() { return deleted; }
+    public void setDeleted(boolean deleted) { this.deleted = deleted; }
 }

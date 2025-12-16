@@ -35,7 +35,10 @@ public class MainController implements Initializable {
     private Label lblUsuario;
     @FXML
     private Button btnAñadirPel;
+    @FXML
+    private Button btnDeshacer;
 
+    private Copia ultimaCopiaBorrada = null;
     private final CopiaRepository copiaRepository = new CopiaRepository();
     private final SessionServices sessionService = new SessionServices();
     private final ObservableList<Copia> observableCopias = FXCollections.observableArrayList();
@@ -64,6 +67,8 @@ public class MainController implements Initializable {
                 abrirVentanaDetalle(seleccionada);
             }
         });
+
+        btnDeshacer.setDisable(true);
 
 
         // Carga datos del usuario logueado
@@ -128,12 +133,35 @@ public class MainController implements Initializable {
                 + seleccionada.getPelicula().getTitulo() + "?");
 
         if (alert.showAndWait().get() == ButtonType.OK) {
+            //Guardamos la copia en memoria
+            ultimaCopiaBorrada = seleccionada;
 
             copiaRepository.delete(seleccionada);
+
+            //Activamos el botón de deshacer
+            btnDeshacer.setDisable(false);
 
             cargarCopias();
         }
     }
+    @FXML
+    public void onDeshacerClick() {
+        if (ultimaCopiaBorrada != null) {
+            // cambiamos el flag y actualizamos
+            ultimaCopiaBorrada.setDeleted(false);
+            copiaRepository.update(ultimaCopiaBorrada);
+
+            // Actualizamos la tabla
+            cargarCopias();
+
+            mostrarAlerta("Información", "La película ha sido restaurada exitosamente.");
+
+            // Reseteamos el estado del botón
+            ultimaCopiaBorrada = null;
+            btnDeshacer.setDisable(true);
+        }
+    }
+
     @FXML
     public void onAnadirClick() {
         try {

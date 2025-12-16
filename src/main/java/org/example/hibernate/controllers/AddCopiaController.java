@@ -3,6 +3,7 @@ package org.example.hibernate.controllers;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -67,7 +68,7 @@ public class AddCopiaController implements Initializable {
     public void onGuardarClick() {
         // Validaciones básicas
         if (comboPeliculas.getValue() == null || txtEstado.getText().isEmpty() || txtSoporte.getText().isEmpty()) {
-            System.out.println("Faltan datos");
+            mostrarAlerta("Campos vacíos","No debe quedar ningún campo sin rellenar");
             return;
         }
 
@@ -102,5 +103,12 @@ public class AddCopiaController implements Initializable {
     private void cerrarVentana() {
         Stage stage = (Stage) txtEstado.getScene().getWindow();
         stage.close();
+    }
+    private void mostrarAlerta(String titulo, String mensaje) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
     }
 }

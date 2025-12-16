@@ -6,6 +6,8 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -53,12 +55,40 @@
     <bottom>
         <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="20.0" BorderPane.alignment="CENTER">
             <children>
-                <Button mnemonicParsing="false" onAction="#onAnadirClick" text="Añadir" />
-                <Button mnemonicParsing="false" onAction="#onModificarClick" text="Modificar" />
-                <Button mnemonicParsing="false" onAction="#onEliminarClick" text="Eliminar" />
+                <Button mnemonicParsing="false" onAction="#onAnadirClick" text="Añadir">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../plus-pequeno.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+                <Button mnemonicParsing="false" onAction="#onModificarClick" text="Modificar">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../lapiz.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+                <Button mnemonicParsing="false" onAction="#onEliminarClick" text="Eliminar">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../borrar.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
                 <Separator orientation="VERTICAL" />
 
-                <Button fx:id="btnAñadirPel" mnemonicParsing="false" onAction="#onNuevaPeliculaClick" style="-fx-background-color: #e0e0e0;" text="Añadir película" />
+                <Button fx:id="btnAñadirPel" mnemonicParsing="false" onAction="#onNuevaPeliculaClick" style="-fx-background-color: #e0e0e0;" text="Añadir película">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../plus-pequeno.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
             </children>
         </HBox>
     </bottom>

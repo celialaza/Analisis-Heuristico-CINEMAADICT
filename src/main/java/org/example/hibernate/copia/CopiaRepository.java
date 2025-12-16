@@ -60,7 +60,9 @@ public class CopiaRepository implements Repository<Copia> {
         Transaction transaction = null;
         try (Session session = DataProvider.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            session.remove(session.contains(entity) ? entity : session.merge(entity));
+
+            entity.setDeleted(true);
+            session.merge(entity);
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) transaction.rollback();
@@ -72,7 +74,7 @@ public class CopiaRepository implements Repository<Copia> {
     public List<Copia> obtenerCopiasPorUsuario(int idUsuario) {
         try (Session session = DataProvider.getSessionFactory().openSession()) {
             Query<Copia> query = session.createQuery(
-                    "FROM Copia c JOIN FETCH c.pelicula JOIN FETCH c.usuario WHERE c.usuario.id = :id",
+                    "FROM Copia c JOIN FETCH c.pelicula JOIN FETCH c.usuario WHERE c.usuario.id = :id AND c.deleted=false",
                     Copia.class
             );
             query.setParameter("id", idUsuario);
